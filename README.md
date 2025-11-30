@@ -8,26 +8,6 @@
 
 ---
 
-## 資料夾結構
-
-```
-crypto-ai-user-release/
-├── README.md               ← 你正在看的說明書
-├── 系統報告書.md           ← 系統技術文檔（開發者用）
-├── start.bat              ← 一鍵啟動腳本
-│
-├── backend/               ← 後端系統
-│   ├── main.py
-│   ├── chart_generator.py
-│   ├── run_backend.py
-│   └── [依賴套件...]
-│
-└── frontend/              ← 前端應用
-    ├── index.html
-    └── static/
-```
-
----
 
 ## ⚙️ 系統需求
 
