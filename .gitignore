@@ -1,3 +1,48 @@
+### Ignore vendored packages accidentally committed under backend/
+/backend/annotated_types/
+/backend/anyio/
+/backend/cachetools/
+/backend/certifi/
+/backend/charset_normalizer/
+/backend/click/
+/backend/colorama/
+/backend/dotenv/
+/backend/etc/
+/backend/fastapi/
+/backend/google/
+/backend/grpc/
+/backend/h11/
+/backend/httpcore/
+/backend/httpx/
+/backend/idna/
+/backend/jupyterlab_plotly/
+/backend/kaleido/
+/backend/numpy.libs/
+/backend/packaging/
+/backend/proto/
+/backend/pyasn1/
+/backend/pyasn1_modules/
+/backend/pydantic/
+/backend/pydantic_core/
+/backend/requests/
+/backend/rsa/
+/backend/share/
+/backend/sniffio/
+/backend/starlette/
+/backend/tenacity/
+/backend/tqdm/
+/backend/typing_inspection/
+/backend/urllib3/
+/backend/uvicorn/
+/backend/_plotly_future_/
+/backend/_plotly_utils/
+
+# Python virtual env
+.venv/
+venv/
+
+# Logs
+logs/
 # Python
 __pycache__/
 *.py[cod]
