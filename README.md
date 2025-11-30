@@ -124,7 +124,6 @@ http://localhost:3000
 2. 點擊「Create API Key」
 3. 選擇或建立 Google Cloud 專案
 4. 複製生成的 API key（格式：`AIza_...`）
-5. 使用上述三種方式之一設置
 
 > 💡 免費版本有每日配額限制，建議用於測試。
 
