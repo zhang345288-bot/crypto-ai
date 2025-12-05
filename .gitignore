@@ -98,6 +98,10 @@ chart_output/
 *.jpg
 *.jpeg
 
+# Allow keeping project frontend icons even if global image patterns exist
+!frontend/images/
+!frontend/images/**
+
 # Database
 *.db
 *.sqlite
