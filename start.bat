@@ -1,41 +1,33 @@
 @echo off
 REM Crypto-AI User Release - One-Click Launcher
-REM Double-click this file to start the system
+REM This launcher will prefer a bundled backend executable if present,
+REM otherwise it will attempt to activate a `.venv` and run the backend.
 
 setlocal enabledelayedexpansion
 
 cd /d "%~dp0"
 
-echo.
-echo ============================================================
-echo   Crypto-AI - 啟動中...
-echo ============================================================
-echo.
+REM Start backend (delegated to PowerShell script which handles .venv or bundled exe)
+echo Starting Crypto-AI Backend...
+start "CryptoAI Backend" powershell -NoExit -ExecutionPolicy RemoteSigned -File "%~dp0backend\start_backend.ps1"
 
-REM Start backend from project root
-echo Starting backend on port 8000...
-start "CryptoAI Backend" cmd /k python backend\run_backend.py
+timeout /t 2
 
-timeout /t 3
-
-REM Start frontend if available
-echo Starting frontend on port 3000...
+REM Start frontend (delegated to PowerShell script)
 if exist "frontend\index.html" (
-    start "CryptoAI Frontend" cmd /k "cd /d %~dp0frontend && python -m http.server 3000"
+    echo Starting Frontend Server...
+    start "CryptoAI Frontend" powershell -NoExit -ExecutionPolicy RemoteSigned -File "%~dp0frontend\start_frontend.ps1"
     timeout /t 2
-    echo Opening browser at http://localhost:3000
+    echo Opening browser...
     start "" "http://localhost:3000"
 ) else (
     echo Frontend files not found. Backend is running at http://localhost:8000/docs
 )
 
 echo.
-echo ============================================================
-echo Crypto-AI started.
-echo Frontend: http://localhost:3000
-echo Backend: http://localhost:8000/docs
-echo Health: http://localhost:8000/health
-echo ============================================================
+echo Crypto-AI startup attempted.
+echo - Backend window: "CryptoAI Backend"
+echo - Frontend window: "CryptoAI Frontend"
 echo.
-
+echo Close the PowerShell windows to stop the services.
 pause
