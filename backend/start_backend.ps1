@@ -23,7 +23,8 @@ if (-not (Test-Path $venvActivate)) {
     if (Test-Path $setup) {
         Write-Host "Running project setup: $setup"
         # run setup.ps1 in project root to create .venv and install requirements
-        powershell -NoProfile -ExecutionPolicy RemoteSigned -File $setup
+        # Use Bypass to avoid ExecutionPolicy preventing unsigned scripts when launched by double-click
+        powershell -NoProfile -ExecutionPolicy Bypass -File $setup
     } else {
         Write-Host "setup.ps1 not found in project root. Please run setup.ps1 manually or follow README instructions."
         Pause
