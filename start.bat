@@ -9,14 +9,14 @@ cd /d "%~dp0"
 
 REM Start backend (delegated to PowerShell script which handles .venv or bundled exe)
 echo Starting Crypto-AI Backend...
-start "CryptoAI Backend" powershell -NoExit -ExecutionPolicy RemoteSigned -File "%~dp0backend\start_backend.ps1"
+start "CryptoAI Backend" powershell -NoExit -ExecutionPolicy Bypass -File "%~dp0backend\start_backend.ps1"
 
 timeout /t 2
 
 REM Start frontend (delegated to PowerShell script)
 if exist "frontend\index.html" (
     echo Starting Frontend Server...
-    start "CryptoAI Frontend" powershell -NoExit -ExecutionPolicy RemoteSigned -File "%~dp0frontend\start_frontend.ps1"
+    start "CryptoAI Frontend" powershell -NoExit -ExecutionPolicy Bypass -File "%~dp0frontend\start_frontend.ps1"
     timeout /t 2
     echo Opening browser...
     start "" "http://localhost:3000"
