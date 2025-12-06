@@ -73,14 +73,20 @@
 
 系統支援 Google Gemini AI，若要啟用更智能的分析：
 
-1. 在系統根目錄建立或編輯 `.env` 檔案
-2. 加入以下內容（用你的 Gemini API Key 替換）：
-   ```
-   GEMINI_API_KEY=your_api_key_here
-   ```
-3. 重啟系統即生效
+1. 前端啟動後，點擊右上角 **「⚙️ AI 設置」** 按鈕
+2. 在彈出的「AI 深度分析設置」對話框中輸入你的 **Google Gemini API Key**
+3. 點擊 **「儲存」** 按鈕，Key 會保存在本機瀏覽器快取中
+4. 重新載入頁面即可開始使用 AI 建議功能
 
-> 若未設定 API Key，系統仍可正常運作但 AI 建議功能會受限。
+**如何獲得 Gemini API Key：**
+- 前往 [Google AI Studio](https://ai.google.dev/) 
+- 登入 Google 帳號並建立新的 API Key
+- 複製 Key 並貼入前端設置框
+
+> **提示：**
+> - API Key 會儲存在本機 localStorage（只在你的瀏覽器中）
+> - Google Gemini 免費方案含每日約 1500 次請求
+> - 若未設定 API Key，系統仍可正常運作但 AI 建議功能會受限
 
 ### 手動啟動（進階用戶）
 
