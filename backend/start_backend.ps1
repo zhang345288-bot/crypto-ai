@@ -10,11 +10,24 @@ Set-Location $scriptDir
 
 $exe = Join-Path $scriptDir 'crypto_ai_backend.exe'
 $venvActivate = Join-Path $root '.venv\Scripts\Activate.ps1'
+$venvPath = Join-Path $root '.venv'
 
 if (Test-Path $exe) {
     Write-Host "Found bundled backend executable. Starting..."
     & $exe
     exit
+}
+
+# Check if .venv has old hardcoded paths and needs to be recreated
+if (Test-Path $venvPath) {
+    $pyenvCfg = Join-Path $venvPath 'pyvenv.cfg'
+    if (Test-Path $pyenvCfg) {
+        $cfgContent = Get-Content $pyenvCfg -Raw
+        if ($cfgContent -match 'C:\\Users\\1\\') {
+            Write-Host "⚠ Detected old user path in .venv. Removing and recreating..."
+            Remove-Item -Recurse -Force $venvPath
+        }
+    }
 }
 
 if (-not (Test-Path $venvActivate)) {

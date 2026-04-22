@@ -12,11 +12,24 @@ $venvPath = Join-Path $root '.venv'
 $requirements = Join-Path $root 'requirements.txt'
 
 try {
+    if (Test-Path $venvPath) {
+        Write-Host ".venv already exists. Checking if it needs to be recreated..."
+        # Check if pyvenv.cfg points to a different Python installation
+        $pyenvCfg = Join-Path $venvPath 'pyvenv.cfg'
+        if (Test-Path $pyenvCfg) {
+            $cfgContent = Get-Content $pyenvCfg -Raw
+            if ($cfgContent -match 'C:\\Users\\1\\') {
+                Write-Host "⚠ Detected old user path in .venv. Removing and recreating..."
+                Remove-Item -Recurse -Force $venvPath
+            }
+        }
+    }
+    
     if (-not (Test-Path $venvPath)) {
         Write-Host "Creating virtual environment at $venvPath..."
         python -m venv .venv
     } else {
-        Write-Host ".venv already exists. Skipping creation."
+        Write-Host ".venv is valid. Continuing..."
     }
 
     Write-Host "Activating .venv..."
