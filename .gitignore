@@ -37,10 +37,6 @@
 /backend/_plotly_future_/
 /backend/_plotly_utils/
 
-# Python virtual env
-.venv/
-venv/
-
 # Logs
 logs/
 # Python
